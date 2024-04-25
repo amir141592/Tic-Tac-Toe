@@ -9,11 +9,11 @@ function App() {
 				<div id="game-container">
 					<ol id="players">
 						<Player
-							name="Player 1"
+							initName="Player 1"
 							symbol="X"
 						/>
 						<Player
-							name="player 2"
+							initName="player 2"
 							symbol="O"
 						/>
 					</ol>
