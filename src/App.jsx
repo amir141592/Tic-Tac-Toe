@@ -2,7 +2,7 @@ import GameBoard from "./components/GameBoard.component";
 import Header from "./components/Header.component";
 import Player from "./components/Player.component";
 
-function App() {
+export default function App() {
 	return (
 		<>
 			<Header />
@@ -24,5 +24,3 @@ function App() {
 		</>
 	);
 }
-
-export default App;
