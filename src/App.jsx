@@ -1,3 +1,4 @@
+import GameBoard from "./components/GameBoard.component";
 import Header from "./components/Header.component";
 import Player from "./components/Player.component";
 
@@ -17,6 +18,7 @@ function App() {
 							symbol="O"
 						/>
 					</ol>
+					<GameBoard />
 				</div>
 			</main>
 		</>
