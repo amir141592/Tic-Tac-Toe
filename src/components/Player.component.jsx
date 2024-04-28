@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function Player({ initName, symbol }) {
+export default function Player({ initName, symbol, isActive }) {
 	const [name, setName] = useState(initName);
 	const [isEditing, setIsEditing] = useState(false);
 
@@ -10,11 +10,11 @@ export default function Player({ initName, symbol }) {
 
 	function toggleIsEditing() {
 		// ? always use a function if you want to change state value based on its prev value
-		setIsEditing((prevValue) => !prevValue);
+		setIsEditing((curVal) => !curVal);
 	}
 
 	return (
-		<li>
+		<li className={isActive ? "active" : undefined}>
 			<span className="player">
 				{isEditing ? (
 					<input
