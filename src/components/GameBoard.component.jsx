@@ -4,19 +4,17 @@ const initGameBoard = [
 	[null, null, null],
 ];
 
-export default function GameBoard({ onSelectSquare }) {
-	// const [gameBoard, setGameBoard] = useState(initGameBoard);
+export default function GameBoard({ onSelectSquare, turns }) {
+	const gameBoard = initGameBoard;
 
-	// // ? When we want to change an state of type object or array, we must clone it and change the clone then return it
-	// function selectSquare(rowIndex, colIndex) {
-	// 	setGameBoard((curGameBoard) => {
-	// 		const clonedGameBoard = [...curGameBoard.map((row) => [...row])];
-	// 		clonedGameBoard[rowIndex][colIndex] = activePlayerSymbol;
-	// 		return clonedGameBoard;
-	// 	});
+	for (const turn of turns) {
+		const {
+			square: { row, col },
+			player,
+		} = turn;
 
-	// 	onSelectSquare();
-	// }
+		gameBoard[row][col] = player;
+	}
 
 	return (
 		<ol id="game-board">
@@ -25,7 +23,7 @@ export default function GameBoard({ onSelectSquare }) {
 					<ol>
 						{row.map((col, colIndex) => (
 							<li key={colIndex}>
-								<button onClick={onSelectSquare}>{col}</button>
+								<button onClick={() => onSelectSquare(rowIndex, colIndex)}>{col}</button>
 							</li>
 						))}
 					</ol>

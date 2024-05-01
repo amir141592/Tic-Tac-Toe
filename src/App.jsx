@@ -11,6 +11,8 @@ export default function App() {
 
 	function selectSquare(row, col) {
 		setActivePlayer((curVal) => (curVal == "X" ? "O" : "X"));
+		// ? dont use activePlayer state value for updating gameTurns state because we wont have the latest value of activePlayer state
+		// ? when we want to update an state of type object or array, we should clone it then update the clone and return the clone
 		setGameTurns((curGameTurns) => [{ player: curGameTurns[0]?.player == "X" ? "O" : "X", square: { row, col } }, ...curGameTurns]);
 	}
 
@@ -36,10 +38,10 @@ export default function App() {
 					</ol>
 					<GameBoard
 						onSelectSquare={selectSquare}
-						activePlayerSymbol={activePlayer}
+						turns={gameTurns}
 					/>
 				</div>
-				<Log />
+				<Log turns={gameTurns} />
 			</main>
 		</>
 	);
