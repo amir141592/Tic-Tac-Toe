@@ -4,16 +4,25 @@ import GameBoard from "./components/GameBoard.component";
 import Header from "./components/Header.component";
 import Player from "./components/Player.component";
 import Log from "./components/Log.component";
+import WINNING_CONFITIONS from "./winning-conditions";
+
+function changeActivePlayer(gameTurns) {
+	return gameTurns[0]?.player == "X" ? "O" : "X";
+}
 
 export default function App() {
-	const [activePlayer, setActivePlayer] = useState("X");
 	const [gameTurns, setGameTurns] = useState([]);
 
+	let activePlayer = "X";
+
 	function selectSquare(row, col) {
-		setActivePlayer((curVal) => (curVal == "X" ? "O" : "X"));
 		// ? dont use activePlayer state value for updating gameTurns state because we wont have the latest value of activePlayer state
 		// ? when we want to update an state of type object or array, we should clone it then update the clone and return the clone
-		setGameTurns((curGameTurns) => [{ player: curGameTurns[0]?.player == "X" ? "O" : "X", square: { row, col } }, ...curGameTurns]);
+		setGameTurns((curGameTurns) => {
+			activePlayer = changeActivePlayer(curGameTurns);
+
+			return [{ player: curGameTurns[0]?.player == "X" ? "O" : "X", square: { row, col } }, ...curGameTurns];
+		});
 	}
 
 	return (
