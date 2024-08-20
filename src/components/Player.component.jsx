@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function Player({ initName, symbol, isActive }) {
+export default function Player({ initName, symbol, isActive, onChangeName }) {
 	const [name, setName] = useState(initName);
 	const [isEditing, setIsEditing] = useState(false);
 
@@ -10,7 +10,9 @@ export default function Player({ initName, symbol, isActive }) {
 
 	function toggleIsEditing() {
 		// ? always use a function if you want to change state value based on its prev value
-		setIsEditing((curVal) => !curVal);
+		setIsEditing((curIsEditing) => !curIsEditing);
+
+		if (isEditing) onChangeName(symbol, name);
 	}
 
 	return (
